@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 CC := gcc
-CFLAGS := -Wall -O3
+CFLAGS := -Wno-int-conversion -O3
 
 DEPS := $(shell find src -type f -name '*.h')
 SRC  := src/main.c
@@ -13,7 +13,7 @@ clean:
 
 $(BIN): $(SRC) $(DEPS)
 	@mkdir -p $(@D)
-	$(CC) -o $@ $< $(CFLAGS)
+	@$(CC) -o $@ $< $(CFLAGS)
 
 run: $(BIN)
 	@./$<

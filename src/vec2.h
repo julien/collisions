@@ -33,21 +33,21 @@ vec2 * vec2_set(vec2 * v, float x, float y) {
   return v;
 }
 
-vec2 * vec2_add(vec2 * v1, vec2 v2) {
-  v1->x += v2.x;
-  v1->y += v2.y;
-  return v1;
+vec2 * vec2_add(vec2 * a, vec2  * b) {
+  a->x += b->x;
+  a->y += b->y;
+  return a;
 }
 
-vec2 * vec2_sub(vec2 * v1, vec2 v2) {
-  v1->x -= v2.x;
-  v1->y -= v2.y;
-  return v1;
+vec2 * vec2_sub(vec2 * a, vec2 * b) {
+  a->x -= b->x;
+  a->y -= b->y;
+  return a;
 }
 
 vec2 * vec2_neg(vec2 * v) {
-  v->x = -(v->x);
-  v->y = -(v->y);
+  v->x = v->x * -1;
+  v->y = v->y * -1;
   return v;
 }
 
@@ -63,26 +63,26 @@ vec2 * vec2_div(vec2 * v, float divisor) {
   return v;
 }
 
-void vec2_assertEq(vec2 v1, vec2 v2) {
-  assert(eqfloats(v1.x, v2.x));
-  assert(eqfloats(v1.y, v2.y));
+void vec2_assertEq(vec2 * a, vec2 * b) {
+  assert(eqfloats(a->x, b->x));
+  assert(eqfloats(a->y, b->y));
 }
 
-int vec2_equals(vec2 v1, vec2 v2) {
-  int x = eqfloats(v1.x, v2.x);
-  int y = eqfloats(v1.y, v2.y);
+int vec2_equals(vec2 * a, vec2 * b) {
+  int x = eqfloats(a->x, b->x);
+  int y = eqfloats(a->y, b->y);
   return x && y;
 }
 
-float vec2_length(vec2 v) {
-  return sqrtf(v.x * v.x + v.y * v.y);
+float vec2_length(vec2 * v) {
+  return sqrtf(v->x * v->x + v->y * v->y);
 }
 
 vec2 * vec2_unit(vec2 *v) {
 
   if (v->x > 0 && v->y > 0) {
 
-    float length = vec2_length(*v);
+    float length = vec2_length(v);
     if (0 < length) {
       return vec2_div(v, length);
     }
@@ -103,23 +103,23 @@ vec2 * vec2_rotate(vec2 * v, float degrees) {
   return v;
 }
 
-float vec2_dotproduct(vec2 v1, vec2 v2) {
-  return v1.x * v2.x + v1.y * v2.y;
+float vec2_dotproduct(vec2 * a, vec2 * b) {
+  return a->x * b->x + a->y * b->y;
 }
 
-float vec2_enclosed_angle(vec2 v1, vec2 v2) {
-  vec2 * ua = vec2_unit(&v1);
-  vec2 * ub = vec2_unit(&v2);
-  float dp = vec2_dotproduct(*ua, *ub);
+float vec2_enclosed_angle(vec2 * a, vec2 * b) {
+  vec2 * ua = vec2_unit(a);
+  vec2 * ub = vec2_unit(b);
+  float dp = vec2_dotproduct(ua, ub);
   return degrees(acosf(dp));
 }
 
 vec2 * vec2_project(vec2 * project, vec2 * onto) {
 
-  float d = vec2_dotproduct(*onto, *onto);
+  float d = vec2_dotproduct(onto, onto);
 
   if (0 < d) {
-    float dp = vec2_dotproduct(*project, *onto);
+    float dp = vec2_dotproduct(project, onto);
     return vec2_mul(onto, dp / d);
   }
 
