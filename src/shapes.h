@@ -18,16 +18,13 @@ typedef struct {
   float radius;
 } circle;
 
-typedef struct {
-  vec2 * origin;
-  vec2 * size;
-} rect;
 
+/* oriented rectangle */
 typedef struct {
   vec2 * center;
   vec2 * halfExtend;
   float angle;
-}
+} xrect;
 
 
 #endif

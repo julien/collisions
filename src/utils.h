@@ -17,4 +17,8 @@ float degrees(float radians) {
   return radians * 180 / M_PI;
 }
 
+int overlap(float mina, float maxa, float minb, float maxb) {
+  return minb <= maxa && mina <= maxb;
+}
+
 #endif

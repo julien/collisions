@@ -8,14 +8,15 @@
 
 /* vec2 */
 typedef struct {
-  float location[2];
+  float x;
+  float y;
 } vec2;
 
 vec2 * vec2_init(double x, double y) {
   vec2 * v = malloc(sizeof(vec2));
   if (v != NULL) {
-    v->location[0] = x;
-    v->location[1] = y;
+    v->x = x;
+    v->y = y;
   }
   return v;
 }
@@ -27,59 +28,59 @@ void vec2_free(vec2 * v) {
 }
 
 vec2 * vec2_set(vec2 * v, float x, float y) {
-  v->location[0] = x;
-  v->location[1] = y;
+  v->x = x;
+  v->y = y;
   return v;
 }
 
 vec2 * vec2_add(vec2 * v1, vec2 v2) {
-  v1->location[0] += v2.location[0];
-  v1->location[1] += v2.location[1];
+  v1->x += v2.x;
+  v1->y += v2.y;
   return v1;
 }
 
 vec2 * vec2_sub(vec2 * v1, vec2 v2) {
-  v1->location[0] -= v2.location[0];
-  v1->location[1] -= v2.location[1];
+  v1->x -= v2.x;
+  v1->y -= v2.y;
   return v1;
 }
 
 vec2 * vec2_neg(vec2 * v) {
-  v->location[0] = -(v->location[0]);
-  v->location[1] = -(v->location[1]);
+  v->x = -(v->x);
+  v->y = -(v->y);
   return v;
 }
 
 vec2 * vec2_mul(vec2 * v, float scalar) {
-  v->location[0] *= scalar;
-  v->location[1] *= scalar;
+  v->x *= scalar;
+  v->y *= scalar;
   return v;
 }
 
 vec2 * vec2_div(vec2 * v, float divisor) {
-  v->location[0] /= 2;
-  v->location[1] /= 2;
+  v->x /= 2;
+  v->y /= 2;
   return v;
 }
 
 void vec2_assertEq(vec2 v1, vec2 v2) {
-  assert(eqfloats(v1.location[0], v2.location[0]));
-  assert(eqfloats(v1.location[1], v2.location[1]));
+  assert(eqfloats(v1.x, v2.x));
+  assert(eqfloats(v1.y, v2.y));
 }
 
 int vec2_equals(vec2 v1, vec2 v2) {
-  int x = eqfloats(v1.location[0], v2.location[0]);
-  int y = eqfloats(v1.location[1], v2.location[1]);
+  int x = eqfloats(v1.x, v2.x);
+  int y = eqfloats(v1.y, v2.y);
   return x && y;
 }
 
 float vec2_length(vec2 v) {
-  return sqrtf(v.location[0] * v.location[0] + v.location[1] * v.location[1]);
+  return sqrtf(v.x * v.x + v.y * v.y);
 }
 
 vec2 * vec2_unit(vec2 *v) {
 
-  if (v->location[0] > 0 && v->location[1] > 0) {
+  if (v->x > 0 && v->y > 0) {
 
     float length = vec2_length(*v);
     if (0 < length) {
@@ -96,14 +97,14 @@ vec2 * vec2_rotate(vec2 * v, float degrees) {
   float c = cosf(r);
   float s = sinf(r);
 
-  v->location[0] = v->location[0] * c - v->location[1] * s;
-  v->location[1] = v->location[0] * s + v->location[1] * c;
+  v->x = v->x * c - v->y * s;
+  v->y = v->x * s + v->y * c;
 
   return v;
 }
 
 float vec2_dotproduct(vec2 v1, vec2 v2) {
-  return v1.location[0] * v2.location[0] + v1.location[1] * v2.location[1];
+  return v1.x * v2.x + v1.y * v2.y;
 }
 
 float vec2_enclosed_angle(vec2 v1, vec2 v2) {
