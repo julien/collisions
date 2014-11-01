@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 CC := gcc
-CFLAGS := -Wall
+CFLAGS := -Wall -O3
 
 DEPS := $(shell find src -type f -name '*.h')
 SRC  := src/main.c

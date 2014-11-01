@@ -20,6 +20,8 @@ rect * rect_init(x, y, w, h) {
 
 void rect_free(rect * r) {
   if (r != NULL) {
+    vec2_free(r->origin);
+    vec2_free(r->size);
     free(r);
   }
 }

@@ -21,6 +21,7 @@ circle * circle_init(float x, float y, float radius) {
 
 void circle_free(circle * c) {
   if (c != NULL) {
+    vec2_free(c->center);
     free(c);
   }
 }

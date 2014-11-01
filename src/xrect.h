@@ -24,6 +24,8 @@ xrect * xrect_init(float x, float y, float w, float h, float angle) {
 
 void xrect_free(xrect * x) {
   if (x != NULL) {
+    vec2_free(x->center);
+    vec2_free(x->halfExtend);
     free(x);
   }
 }

@@ -22,6 +22,8 @@ line * line_init(x, y, w, h) {
 
 void line_free(line * l) {
   if (l != NULL) {
+    vec2_free(l->base);
+    vec2_free(l->direction);
     free(l);
   }
 }

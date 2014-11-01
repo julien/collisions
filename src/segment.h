@@ -21,6 +21,8 @@ segment * segment_init(x1, y1, x2, y2) {
 
 void segment_free(segment * s) {
   if (s != NULL) {
+    vec2_free(s->point1);
+    vec2_free(s->point2);
     free(s);
   }
 }
