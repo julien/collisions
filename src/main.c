@@ -5,6 +5,7 @@
 #include "minunit.h"
 #include "vec2_tests.h"
 #include "rect_tests.h"
+#include "circle_tests.h"
 
 int tests_run = 0;
 
@@ -28,6 +29,10 @@ static char * all_tests() {
   mu_run_test(test_rect_init);
   mu_run_test(test_rect_collides);
 
+  /* circle tests */
+  mu_run_test(test_circle_init);
+  mu_run_test(test_circle_collides);
+
   return 0;
 }
 
@@ -42,15 +47,5 @@ int main(int agrc, char ** argv) {
   }
 
   return result != 0;
-
-  // /* recangle-rectangle collision */
-  // rect * r1 = rect_init(1, 1, 4, 4);
-  // rect * r2 = rect_init(2, 2, 5, 5);
-
-  // assert(1 == rect_collides(*r1, *r2));
-
-  // rect_free(r1);
-  // rect_free(r2);
-
 }
 
