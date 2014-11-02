@@ -3,9 +3,7 @@
 #include <stdlib.h>
 
 #include "minunit.h"
-#include "vec2_tests.h"
-#include "rect_tests.h"
-#include "circle_tests.h"
+#include "tests.h"
 
 int tests_run = 0;
 

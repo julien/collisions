@@ -1,11 +1,19 @@
-#ifndef __VEC2_TESTS_H__
-#define __VEC2_TESTS_H__
+#ifndef __TESTS_H__
+#define __TESTS_H__
 
 #include <math.h>
-#include "vec2.h"
+
 #include "minunit.h"
+#include "utils.h"
+#include "vec2.h"
+#include "circle.h"
+#include "line.h"
+#include "segment.h"
+#include "rect.h"
+#include "xrect.h"
+#include "collision.h"
 
-
+/* vec2 tests */
 static char * test_vec2_init() {
   vec2 * v = vec2_init(2.0, 2.0);
 
@@ -166,6 +174,65 @@ static char * test_vec2_enclosed_angle() {
 
   vec2_free(a);
   vec2_free(b);
+
+  return 0;
+}
+
+/* rect tests */
+static char * test_rect_init() {
+  rect * r = rect_init(2.0, 2.0, 10.0, 10.0);
+
+  mu_assert("r->origin->x == 2", r->origin->x == 2);
+  mu_assert("r->origin->y == 2", r->origin->y == 2);
+  mu_assert("r->size->x == 10", r->size->x == 10);
+  mu_assert("r->size->y == 10", r->size->y == 10);
+
+  rect_free(r);
+
+  return 0;
+}
+
+static char * test_rect_collides() {
+  rect * a = rect_init(1.0, 1.0, 4.0, 4.0);
+  rect * b = rect_init(2.0, 2.0, 5.0, 5.0);
+  rect * c = rect_init(6.0, 4.0, 4.0, 2.0);
+
+  mu_assert("1 == rect_collides(a, b)", 1 == rect_collides(a, b));
+  mu_assert("1 == rect_collides(b, c)", 1 == rect_collides(b, c));
+  mu_assert("0 == rect_collides(a, c)", 0 == rect_collides(a, c));
+
+  rect_free(a);
+  rect_free(b);
+  rect_free(c);
+
+  return 0;
+}
+
+/* circle tests */
+static char * test_circle_init() {
+  circle * c = circle_init(10.0, 20.0, 40.0);
+
+  mu_assert("c->center->x == 10", c->center->x == 10);
+  mu_assert("c->center->y == 20", c->center->y == 20);
+  mu_assert("c->radius = 40", c->radius == 40);
+
+  circle_free(c);
+
+  return 0;
+}
+
+static char * test_circle_collides() {
+  circle * a = circle_init(4.0, 4.0, 2.0);
+  circle * b = circle_init(7.0, 4.0, 2.0);
+  circle * c = circle_init(10.0, 4.0, 2.0);
+
+  mu_assert("1 == circle_collides(a, b)", 1 == circle_collides(a, b));
+  mu_assert("1 == circle_collides(b, c)", 1 == circle_collides(b, c));
+  mu_assert("0 == circle_collides(a, c)", 0 == circle_collides(a, c));
+
+  circle_free(a);
+  circle_free(b);
+  circle_free(c);
 
   return 0;
 }

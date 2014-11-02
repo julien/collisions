@@ -26,11 +26,5 @@ void circle_free(circle * c) {
   }
 }
 
-int circle_collides(circle * a, circle * b) {
-  float radii = a->radius * b->radius;
-  vec2 * dist = vec2_sub(a->center, *b->cebter);
-  return vec2_length(*dist) < radii;
-
-}
 #endif
 

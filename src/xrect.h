@@ -11,15 +11,15 @@ typedef struct {
 } xrect;
 
 xrect * xrect_init(float x, float y, float w, float h, float angle) {
-  xrect * x = malloc(sizeof(xrect));
+  xrect * r = malloc(sizeof(xrect));
 
-  if (x != NULL) {
-    x->center = vec2_init(x, y);
-    x->halfExtend = vec2_init(w, h);
-    x->angle = angle;
+  if (r != NULL) {
+    r->center = vec2_init(x, y);
+    r->halfExtend = vec2_init(w, h);
+    r->angle = angle;
   }
 
-  return x;
+  return r;
 }
 
 void xrect_free(xrect * x) {
