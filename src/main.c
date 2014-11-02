@@ -4,6 +4,7 @@
 
 #include "minunit.h"
 #include "vec2_tests.h"
+#include "rect_tests.h"
 
 int tests_run = 0;
 
@@ -23,6 +24,10 @@ static char * all_tests() {
   mu_run_test(test_vec2_dotproduct);
   mu_run_test(test_vec2_enclosed_angle);
 
+  /* rect tests */
+  mu_run_test(test_rect_init);
+  mu_run_test(test_rect_collides);
+
   return 0;
 }
 
@@ -37,17 +42,6 @@ int main(int agrc, char ** argv) {
   }
 
   return result != 0;
-
-  // printf("vec2_length(*v1): %f\n", vec2_length(*v1));
-
-  // vec2_set(v1, 8.0, 2.0);
-  // printf("v1 after vec2_set(v1, 8.0, 2.0): %f, %f\n", v1->y, v1->y);
-
-  // vec2_set(v2, -2.0, 8);
-  // printf("v2 after vec2_set(v2, -2.0, 8.0): %f, %f\n", v2->y, v2->y);
-
-  // printf("vec2_enclosed_angle(*v1, *v2): %f\n", vec2_enclosed_angle(*v1, *v2));
-  // assert(eqfloats(90, vec2_enclosed_angle(*v1, *v2)));
 
   // /* recangle-rectangle collision */
   // rect * r1 = rect_init(1, 1, 4, 4);

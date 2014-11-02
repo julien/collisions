@@ -1,8 +1,10 @@
 #ifndef __VEC2_TESTS_H__
 #define __VEC2_TESTS_H__
 
+#include <math.h>
 #include "vec2.h"
 #include "minunit.h"
+
 
 static char * test_vec2_init() {
   vec2 * v = vec2_init(2.0, 2.0);
@@ -155,19 +157,15 @@ static char * test_vec2_dotproduct() {
 }
 
 static char * test_vec2_enclosed_angle() {
-  vec2 * a = vec2_init(2, 2);
-  vec2 * b = vec2_init(3, 4);
+  vec2 * a = vec2_init(8, 2);
+  vec2 * b = vec2_init(-2, 8);
 
   float angle = vec2_enclosed_angle(a, b);
 
+  mu_assert("angle == 90", angle == 90);
 
   vec2_free(a);
   vec2_free(b);
-
-  return 0;
-}
-
-static char * test_vec2_project() {
 
   return 0;
 }

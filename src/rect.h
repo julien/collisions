@@ -27,18 +27,18 @@ void rect_free(rect * r) {
 }
 
 /* rectangle-rectangle collision */
-int rect_collides(rect a, rect b) {
-  float left1  = a.origin->x;
-  float right1 = left1 + a.size->x;
+int rect_collides(rect * a, rect * b) {
+  float left1  = a->origin->x;
+  float right1 = left1 + a->size->x;
 
-  float left2  = b.origin->x;
-  float right2 = left2 + b.size->x;
+  float left2  = b->origin->x;
+  float right2 = left2 + b->size->x;
 
-  float bottom1 = a.origin->y;
-  float top1 = bottom1 + a.size->y;
+  float bottom1 = a->origin->y;
+  float top1 = bottom1 + a->size->y;
 
-  float bottom2 = b.origin->y;
-  float top2 = bottom2 + b.size->y;
+  float bottom2 = b->origin->y;
+  float top2 = bottom2 + b->size->y;
 
   return overlap(left1, right1, left2, right2) && overlap(bottom1, top1, bottom2, top2);
 }
