@@ -237,4 +237,20 @@ static char * test_circle_collides() {
   return 0;
 }
 
+static char * test_points_collide() {
+  vec2 * a = vec2_init(2.0, 3.0);
+  vec2 * b = vec2_init(2.0, 3.0);
+  vec2 * c = vec2_init(3.0, 3.0);
+
+  mu_assert("1 == points_collide(a, b)", 1 == points_collide(a, b));
+  mu_assert("0 == points_collide(a, c)", 0 == points_collide(a, c));
+  mu_assert("0 == points_collide(b, c)", 0 == points_collide(b, c));
+
+  vec2_free(a);
+  vec2_free(b);
+  vec2_free(c);
+
+  return 0;
+}
+
 #endif

@@ -126,4 +126,17 @@ vec2 * vec2_project(vec2 * project, vec2 * onto) {
   return onto;
 }
 
+
+vec2 * vec2_rotate90(vec2 * v) {
+  float x = v->x;
+  v->x = -v->y;
+  v->y = x;
+  return v;
+}
+
+int vec2_parallel(vec2 * a, vec2 * b) {
+  vec2 * na = vec2_rotate90(a);
+  return eqfloats(0, vec2_dotproduct(na, b));
+}
+
 #endif

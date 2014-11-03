@@ -35,7 +35,7 @@ int circle_collides(circle * a, circle * b) {
 }
 
 /* point-point collision */
-int points_collides(vec2 * a, vec2 * b) {
+int points_collide(vec2 * a, vec2 * b) {
   return eqfloats(a->x, b->x) && eqfloats(a->y, b->y);
 }
 

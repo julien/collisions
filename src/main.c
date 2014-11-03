@@ -25,11 +25,14 @@ static char * all_tests() {
 
   /* rect tests */
   mu_run_test(test_rect_init);
-  mu_run_test(test_rect_collides);
 
   /* circle tests */
   mu_run_test(test_circle_init);
+
+  /* collision tests */
+  mu_run_test(test_rect_collides);
   mu_run_test(test_circle_collides);
+  mu_run_test(test_points_collide);
 
   return 0;
 }
